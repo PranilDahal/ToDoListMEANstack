@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html ng-app="ToDoList">
+
+<head>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<title>To Do List</title>
+</head>
+
+<body>
+
+	<div class="container" ng-controller="AppCtrl">
+
+		<h1>MEAN Stack Application: ToDoList</h1>
+
+		<table class="table">
+
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Text</th>
+					<th>Due</th>
+					<th>Status</th>
+					<th>Action</th>
+					<th>&nbsp;</th>
+					
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td><input class="form-control" ng-model="curr.title"></td>
+					<td><input class="form-control" ng-model="curr.text"></td>
+					<td><input class="form-control" ng-model="curr.due"></td>
+					<td>&nbsp;</td>
+					<td><button class="btn btn-primary" ng-click="addActivity()">Add Activity</button></td>
+					<td><button class="btn btn-info" ng-click="update()">Update</button></td>
+				</tr>
+				<tr ng-repeat="todo in todolist">
+					<td>{{todo.title}}</td>
+					<td>{{todo.text}}</td>
+					<td>{{todo.due}}</td>
+					<td ng-if="todo.status==='Complete'"><button class="btn btn-success" ng-click="MarkIncomplete(todo._id)">&#10004;</button></td>
+					<td ng-if="todo.status==='Incomplete'"><button class="btn btn-danger" ng-click="MarkComplete(todo._id)">&#10008;</button></td>
+					<td><button class="btn btn-danger" ng-click="remove(todo._id)">Remove</button></td>
+          			<td><button class="btn btn-warning" ng-click="edit(todo._id)">Edit</button></td>
+				</tr>
+			</tbody>
+
+		</table>
+
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+
+	<script src="controllers/controller.js"></script>
+
+</body>
+
+</html>
